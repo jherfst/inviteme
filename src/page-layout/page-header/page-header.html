@@ -1,0 +1,45 @@
+
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+
+<script type="text/javascript" src="../../../bower_components/Snap.svg/dist/snap.svg-min.js"></script>
+<script type="text/javascript" src="../../../bower_components/classie/classie.js"></script>
+
+<dom-module id="page-header">
+  <template>
+    <style>
+      :host {
+        text-align: center;
+        padding: 2.25em 0.5em 0;
+      }
+
+      .logo-site {
+        margin: auto;
+        width: 100%;
+        vertical-align: middle;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .logo-site img {
+        display: block;
+        margin: 0 auto;
+      }
+
+    </style>
+    <header class="header-site">
+      <div class="logo-site animated bounceInDown" data-animation-delay="700">
+        <img class="img-responsive" src="../../../images/logo.png" data-at2x="../../../bower_components/metronic/metronic/images/logo@2x.png" alt="Logo" />
+      </div>
+    </header>
+  </template>
+
+  <script>
+    class PageHeader extends Polymer.GestureEventListeners(Polymer.Element) {
+
+      static get is() { return 'page-header'; }
+
+    }
+    window.customElements.define(PageHeader.is, PageHeader);
+  </script>
+</dom-module>

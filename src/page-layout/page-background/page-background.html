@@ -1,0 +1,20 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<script type="text/javascript" src="../../../bower_components/metronic/metronic/js/jquery-1.11.3.min.js"></script>
+<script type="text/javascript" src="../../../bower_components/metronic/metronic/js/jquery.backstretch.min.js"></script>
+
+<dom-module id="page-background">
+    <script>
+        class PageBackground extends Polymer.Element {
+            static get is() {
+                return 'page-background';
+            }
+            ready(){
+                super.ready();
+                $('.image-background').backstretch('images/image-bg.jpg');
+            }
+        }
+        window.customElements.define(PageBackground.is, PageBackground);
+
+
+    </script>
+</dom-module>
