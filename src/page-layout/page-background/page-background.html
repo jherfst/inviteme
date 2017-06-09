@@ -8,9 +8,17 @@
             static get is() {
                 return 'page-background';
             }
+            static get properties(){
+                return {
+                    imageUrl: {
+                        type: String,
+                        value: ''
+                    }
+                };
+            }
             ready(){
                 super.ready();
-                $('.image-background').backstretch('images/image-bg.jpg');
+                $('.image-background').backstretch(this.imageUrl);
             }
         }
         window.customElements.define(PageBackground.is, PageBackground);

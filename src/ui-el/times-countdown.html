@@ -38,41 +38,102 @@ Example:
         display: block;
         box-sizing: border-box;
         text-align: center;
+        color:#fff;
+        margin: 0 auto;
+        overflow: hidden;
+      }
+      .counter-container {
+        max-width: 100%;
+        width: auto;
+        margin: 0 auto;
+        border-left: 0;
+        border-right: 0;
+        padding: 0px;
       }
 
-      #countdown {
+      .counter-container {
+        display: table;
         margin: 0 auto;
       }
+      #clock-countdown .counter-box {
+        width: 100%;
+        float: none;
+        border: none;
+      }
+      #clock-countdown .counter-box {
+        display: block;
+        width: 160px;
+        text-align: center;
+        overflow: hidden;
+        padding: 10px 25px;
+        float: left;
+        margin: 25px 0;
+        position: relative;
+      }
 
+      #clock-countdown .number {
+        font-size: 80px;
+        text-align: center;
+        font-family: 'Monteserrat', sans-serif;
+        font-weight: 700;
+        line-height: 1;
+        margin-bottom: 10px;
+      }
 
+      #clock-countdown span {
+        display: block;
+        font-size: 21px;
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 400;
+        padding-top: 10px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      #clock-countdown span:before {
+        position: absolute;
+        content: '';
+        display: block;
+        width: 30px;
+        height: 1px;
+        background: #fff;
+        margin-left: auto;
+        margin-right: auto;
+        left: 0;
+        right: 0;
+        top: 0px;
+      }
+       .headline{
+         margin: 0 auto;
+         color: #fff;
+         overflow: hidden;
+         font-size: 21px;
+         text-align: center;
+         font-family: 'Open Sans', sans-serif;
+         z-index: 25555555;
+         margin-top: 0 !important;
+       }
     </style>
 
-    <div id="countdown" >
-      <h1>[[countdownHeadline]]</h1>
-      <div  class="layout horizontal center-justified">
-        <div id="countdown-months" hidden$=[[!months]]>
-          <figure>[[_countdownMonths]]</figure>
-          <h2>[[_returnUnit('Months', _countdownMonths)]]</h2>
+    <div id="clock-countdown">
+      <h1  class="headline">[[countdownHeadline]]</h1>
+      <div  class="counter-container">
+        <div class="counter-box first " id="countdown-days" hidden$=[[!days]]>
+          <figure class="number">[[_countdownDays]]</figure>
+          <span>[[_returnUnit('Days', _countdownDays)]]</span>
         </div>
-        <div id="countdown-weeks" hidden$=[[!weeks]]>
-          <figure>[[_countdownWeeks]]</figure>
-          <h2>[[_returnUnit('Weeks', _countdownWeeks)]]</h2>
+        <div class="counter-box " id="countdown-hours" hidden$=[[!hours]]>
+          <figure class="number">[[_countdownHours]]</figure>
+          <span>[[_returnUnit('Hours', _countdownHours)]]</span>
         </div>
-        <div id="countdown-days" hidden$=[[!days]]>
-          <figure>[[_countdownDays]]</figure>
-          <h2>[[_returnUnit('Days', _countdownDays)]]</h2>
+        <div class="counter-box " id="countdown-minutes" hidden$=[[!minutes]]>
+          <figure class="number">[[_countdownMinutes]]</figure>
+          <span>[[_returnUnit('Minutes', _countdownMinutes)]]</span>
         </div>
-        <div id="countdown-hours" hidden$=[[!hours]]>
-          <figure>[[_countdownHours]]</figure>
-          <h2>[[_returnUnit('Hours', _countdownHours)]]</h2>
-        </div>
-        <div id="countdown-minutes" hidden$=[[!minutes]]>
-          <figure>[[_countdownMinutes]]</figure>
-          <h2>[[_returnUnit('Minutes', _countdownMinutes)]]</h2>
-        </div>
-        <div id="countdown-seconds" hidden$=[[!seconds]]>
-          <figure>[[_countdownSeconds]]</figure>
-          <h2>[[_returnUnit('Seconds', _countdownSeconds)]]</h2>
+        <div class="counter-box last" id="countdown-seconds" hidden$=[[!seconds]]>
+          <figure class="number">[[_countdownSeconds]]</figure>
+          <span>[[_returnUnit('Seconds', _countdownSeconds)]]</span>
         </div>
       </div>
     </div>

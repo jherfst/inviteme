@@ -1,0 +1,54 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="page-menu">
+    <template>
+        <style>
+            :host {
+                display: block;
+                padding: 10px;
+
+            }
+             a{
+                 text-decoration: none;
+                 color: #fff;
+             }
+        </style>
+
+            <li>
+                <a href="{{url}}">
+                    <i class="fa fa-fw fa-home"></i>
+                    <span>
+                        <slot></slot>
+                    </span>
+                </a>
+            </li>
+
+    </template>
+
+    <script>
+
+        class PageMenu extends Polymer.Element {
+
+            static get is() { return 'page-menu'; }
+
+            static get properties(){
+                return {
+                    url: {
+                        type: String,
+                        value: ''
+                    },
+                    name : {
+                        type: String,
+                        value: ''
+                    }
+                };
+            }
+            connectedCallback() {
+                super.connectedCallback();
+            }
+        }
+
+
+        window.customElements.define(PageMenu.is, PageMenu);
+    </script>
+</dom-module>

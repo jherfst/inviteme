@@ -12,6 +12,7 @@
 <link rel="import" href="../page-layout/page-background/page-background.html">
 <link rel="import" href="../page-layout/page-layout/page-layout.html">
 <link rel="import" href="../page-layout/page-header/page-header.html">
+<link rel="import" href="../page-layout/page-menu/page-menu.html">
 <link rel="import" href="../ui-el/times-countdown.html">
 <link rel="lazy-import" href="../ui-el/ui-view404.html">
 
@@ -24,17 +25,24 @@
     </style>
 
     <page-overlay></page-overlay>
+
     <page-loader></page-loader>
-    <page-background></page-background>
+
+    <page-background image-url="images/image-bg.jpg"></page-background>
+
     <page-layout>
+
+      <page-menu slot="menu-item" url="index.html">Home</page-menu>
+      <page-menu slot="menu-item" url="about.html">About</page-menu>
+      <page-menu slot="menu-item" url="team.html">Team</page-menu>
+      <page-menu slot="menu-item" url="services.html">Services</page-menu>
+      <page-menu slot="menu-item" url="portfolio.html">Portfolio</page-menu>
+      <page-menu slot="menu-item" url="contact.html">Contact</page-menu>
 
       <page-header></page-header>
 
       <times-countdown
-              countdown-headline="Are you coming?"
-              months="true"
-              weeks="true"
-              days="true"
+              countdown-headline="You are invited!"
               hours="true"
               minutes="true"
               seconds="true"

@@ -83,59 +83,8 @@
         margin: 0;
       }
 
-      .menu ul li {
-        margin: 0 0 2em 0;
-        -webkit-transform: translate3d(-150px, 0, 0);
-        transform: translate3d(-150px, 0, 0);
-        -webkit-transition: -webkit-transform 0.6s;
-        transition: transform 0.6s;
-      }
 
-      .menu.menu--anim ul li {
-        -webkit-transform: translate3d(0, 0, 0);
-        transform: translate3d(0, 0, 0);
-      }
 
-      .menu ul li:first-child {
-        -webkit-transition-delay: 0.3s;
-        transition-delay: 0.3s;
-      }
-
-      .menu ul li:nth-child(2) {
-        -webkit-transition-delay: 0.2s;
-        transition-delay: 0.2s;
-      }
-
-      .menu ul li:nth-child(3) {
-        -webkit-transition-delay: 0.1s;
-        transition-delay: 0.1s;
-      }
-
-      .menu ul li a {
-        display: block;
-        outline: none;
-        text-decoration:none;
-      }
-      .menu ul li a:hover {
-        color:#999;
-      }
-
-      .menu ul li .fa {
-        font-size: 2.5em;
-        display: block;
-        margin: 0 auto;
-        color: #fff;
-      }
-
-      .menu ul li .fa:hover {
-        color:#ccc;
-      }
-
-      .menu ul li span {
-        font-weight: 400;
-        font-size: 1em;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-      }
 
       .menu__handle {
         background: rgba(47, 50, 56, 0);
@@ -237,15 +186,10 @@
     </style>
     <div class="main">
         <nav id="menu" class="menu">
-          <button onclick="toggleMenu" id="menu__handle" class="menu__handle"><span>Menu</span></button>
+          <button id="menu__handle" class="menu__handle"><span>Menu</span></button>
           <div  id="menu__inner" class="menu__inner">
             <ul>
-              <li><a href="index.html"><i class="fa fa-fw fa-home"></i><span>Home</span></a></li>
-              <li><a href="about.html"><i class="fa fa-fw fa-info"></i><span>About</span></a></li>
-              <li><a href="team.html"><i class="fa fa-fw fa-users"></i><span>Team</span></a></li>
-              <li><a href="services.html"><i class="fa fa-fw fa-gear"></i><span>Services</span></a></li>
-              <li><a href="portfolio.html"><i class="fa fa-fw fa-camera"></i><span>Portfolio</span></a></li>
-              <li><a href="contact.html"><i class="fa fa-fw fa-envelope"></i><span>Contact</span></a></li>
+              <slot name="menu-item"></slot>
             </ul>
           </div>
           <div id="morph_shape" class="morph-shape" data-morph-open="[[dataMorphOpen]]" data-morph-close="[[dataMorphClose]]">
