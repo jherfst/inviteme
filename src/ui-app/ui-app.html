@@ -13,7 +13,9 @@
 <link rel="import" href="../page-layout/page-layout/page-layout.html">
 <link rel="import" href="../page-layout/page-header/page-header.html">
 <link rel="import" href="../page-layout/page-menu/page-menu.html">
+<link rel="import" href="../page-layout/page-menu/page-menu-item.html">
 <link rel="import" href="../ui-el/times-countdown.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
 <link rel="lazy-import" href="../ui-el/ui-view404.html">
 
 <dom-module id="ui-app">
@@ -22,32 +24,35 @@
       :host {
         display: block;
       }
+      .color-white{
+        color:#000;
+        background-color: #fff;
+        font-size: larger;
+      }
+
     </style>
 
     <page-overlay></page-overlay>
 
     <page-loader></page-loader>
 
-    <page-background image-url="images/image-bg.jpg"></page-background>
+    <page-background image-url="images/2.jpg"></page-background>
 
     <page-layout>
+      <page-menu>
+        <page-menu-item slot="menu-item" url="index.html">Home</page-menu-item>
+        <page-header logo-name="Say yes"></page-header>
+        <paper-button raised class="color-white">Yes</paper-button>
+        <paper-button raised class="color-white">No</paper-button>
+        <times-countdown
+                countdown-headline="You are invited!"
+                hours="true"
+                minutes="true"
+                seconds="true"
+                countdown-to="2018-11-08">
+        </times-countdown>
+      </page-menu>
 
-      <page-menu slot="menu-item" url="index.html">Home</page-menu>
-      <page-menu slot="menu-item" url="about.html">About</page-menu>
-      <page-menu slot="menu-item" url="team.html">Team</page-menu>
-      <page-menu slot="menu-item" url="services.html">Services</page-menu>
-      <page-menu slot="menu-item" url="portfolio.html">Portfolio</page-menu>
-      <page-menu slot="menu-item" url="contact.html">Contact</page-menu>
-
-      <page-header></page-header>
-
-      <times-countdown
-              countdown-headline="You are invited!"
-              hours="true"
-              minutes="true"
-              seconds="true"
-              countdown-to="2018-11-08">
-      </times-countdown>
 
     </page-layout>
 

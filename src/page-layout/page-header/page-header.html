@@ -10,26 +10,41 @@
     <style>
       :host {
         text-align: center;
-        padding: 2.25em 0.5em 0;
-      }
 
-      .logo-site {
-        margin: auto;
-        width: 100%;
-        vertical-align: middle;
+        font-family: 'Open Sans', sans-serif;
+      }
+      h1 {
+        color: #ffffff;
+        font-size: 100px;
+        font-weight: normal;
+        margin-bottom: 0px;
+        margin-top: -5px;
+        text-align: center;
+        text-shadow: 0 1px 1px #fff;
         position: relative;
-        overflow: hidden;
       }
-
-      .logo-site img {
-        display: block;
-        margin: 0 auto;
+      p {
+        color: #fff;
+        font-size: 29px;
+        text-align: center;
+        text-shadow: 0 1px 1px #fff;
+        position: relative;
       }
-
+      p.byline {
+        font-style: italic;
+        color: #fff;
+        font-size: 18px;
+        margin-top: 0px;
+        text-align: center;
+        text-shadow: 0 1px 1px #fff;
+        position: relative;
+      }
     </style>
     <header class="header-site">
-      <div class="logo-site animated bounceInDown" data-animation-delay="700">
-        <img class="img-responsive" src="../../../images/logo.png" data-at2x="../../../bower_components/metronic/metronic/images/logo@2x.png" alt="Logo" />
+      <div class="logo-site" data-animation-delay="700">
+         <h1>{{logoName}}</h1>
+        <p> Are you coming?</p>
+        <p>6th of June 2017</p>
       </div>
     </header>
   </template>
@@ -38,7 +53,13 @@
     class PageHeader extends Polymer.GestureEventListeners(Polymer.Element) {
 
       static get is() { return 'page-header'; }
-
+      static get properties() {
+          return {
+             logoName: {
+                 type: String,
+             }
+          };
+      }
     }
     window.customElements.define(PageHeader.is, PageHeader);
   </script>
