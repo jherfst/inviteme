@@ -10,22 +10,39 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 
-<dom-module id="ui-view404">
+<link rel="import" href="../page-layout/page-header/page-header.html">
+<link rel="import" href="../ui-el/times-countdown.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<dom-module id="ui-view-home">
   <template>
     <style>
       :host {
         display: block;
-
-        padding: 10px 20px;
+      }
+      .color-white{
+        color:#000;
+        background-color: #fff;
+        font-size: larger;
       }
     </style>
 
-    Oops you hit a 404. <a href="[[rootPath]]">Head back to home.</a>
+    <page-header logo-name="Say yes"></page-header>
+    <paper-button raised class="color-white">Yes</paper-button>
+    <paper-button raised class="color-white">No</paper-button>
+    <times-countdown
+            countdown-headline="You are invited!"
+            hours="true"
+            minutes="true"
+            seconds="true"
+            countdown-to="2018-11-08">
+    </times-countdown>
+    <a href="[[rootPath]]">Head back to home.</a>
   </template>
 
   <script>
-    class UIView404 extends Polymer.Element {
-      static get is() { return 'inviteme-view404'; }
+    class UIViewHome extends Polymer.Element {
+      static get is() { return 'ui-view-home'; }
       static get properties() {
         return {
           // This shouldn't be neccessary, but the Analyzer isn't picking up
@@ -35,6 +52,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     }
 
-    window.customElements.define(UIView404.is, UIView404);
+    window.customElements.define(UIViewHome.is, UIViewHome);
   </script>
 </dom-module>

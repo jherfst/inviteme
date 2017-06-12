@@ -11,12 +11,10 @@
 <link rel="import" href="../page-layout/page-overlay/page-overlay.html">
 <link rel="import" href="../page-layout/page-background/page-background.html">
 <link rel="import" href="../page-layout/page-layout/page-layout.html">
-<link rel="import" href="../page-layout/page-header/page-header.html">
 <link rel="import" href="../page-layout/page-menu/page-menu.html">
 <link rel="import" href="../page-layout/page-menu/page-menu-item.html">
-<link rel="import" href="../ui-el/times-countdown.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="lazy-import" href="../ui-el/ui-view404.html">
+<link rel="import" href="ui-view-404.html">
+<link rel="import" href="ui-view-home.html">
 
 <dom-module id="ui-app">
   <template>
@@ -24,48 +22,98 @@
       :host {
         display: block;
       }
-      .color-white{
-        color:#000;
-        background-color: #fff;
-        font-size: larger;
-      }
 
     </style>
+      <app-location route="{{route}}"></app-location>
+      <app-route
+              route="{{route}}"
+              pattern="[[rootPattern]]:page"
+              data="{{routeData}}"
+              tail="{{subroute}}"></app-route>
 
     <page-overlay></page-overlay>
-
     <page-loader></page-loader>
-
     <page-background image-url="images/2.jpg"></page-background>
-
     <page-layout>
       <page-menu>
-        <page-menu-item slot="menu-item" url="index.html">Home</page-menu-item>
-        <page-header logo-name="Say yes"></page-header>
-        <paper-button raised class="color-white">Yes</paper-button>
-        <paper-button raised class="color-white">No</paper-button>
-        <times-countdown
-                countdown-headline="You are invited!"
-                hours="true"
-                minutes="true"
-                seconds="true"
-                countdown-to="2018-11-08">
-        </times-countdown>
+          <iron-selector slot="menu-item" selected="[[page]]" attr-for-selected="name" role="navigation">
+              <page-menu-item  name="view-home" href="view-home">Home</page-menu-item >
+              <page-menu-item  name="view-404" href="view-404">Home</page-menu-item >
+          </iron-selector>
+
+          <iron-pages
+                  selected="[[page]]"
+                  attr-for-selected="name"
+                  fallback-selection="view-404"
+                  role="main">
+              <ui-view-home name="view-home"></ui-view-home>
+              <ui-view-404 name="view-404"></ui-view-404>
+          </iron-pages>
+
       </page-menu>
     </page-layout>
 
-    <app-location route="{{route}}"></app-location>
-    <app-route
-        route="{{route}}"
-        pattern="[[rootPattern]]:page"
-        data="{{routeData}}"
-        tail="{{subroute}}"></app-route>
+
 
   </template>
 
   <script>
     class UIApp extends Polymer.Element {
       static get is() { return 'ui-app'; }
+        static get properties() {
+            return {
+                page: {
+                    type: String,
+                    reflectToAttribute: true,
+                    observer: '_pageChanged',
+                },
+                rootPattern: String,
+                routeData: Object,
+                subroute: String,
+            };
+        }
+
+        static get observers() {
+            return [
+                '_routePageChanged(routeData.page)',
+            ];
+        }
+
+        constructor() {
+            super();
+
+            // Get root pattern for app-route, for more info about `rootPath` see:
+            // https://www.polymer-project.org/2.0/docs/upgrade#urls-in-templates
+            this.rootPattern = (new URL(this.rootPath)).pathname;
+            console.log(this.rootPattern);
+        }
+
+        _routePageChanged(page) {
+            // Polymer 2.0 will call with `undefined` on initialization.
+            // Ignore until we are properly called with a string.
+            if (page === undefined) {
+                return;
+            }
+
+            // If no page was found in the route data, page will be an empty string.
+            // Deault to 'view1' in that case.
+            this.page = page || 'view-home';
+
+        }
+
+        _pageChanged(page) {
+            // Load page import on demand. Show 404 page if fails
+            var resolvedPageUrl = this.resolveUrl('ui-' + page + '.html');
+            Polymer.importHref(
+                resolvedPageUrl,
+                null,
+                this._showPage404.bind(this),
+                true);
+        }
+
+        _showPage404() {
+            this.page = 'view-404';
+        }
     }
     window.customElements.define(UIApp.is, UIApp);
   </script>

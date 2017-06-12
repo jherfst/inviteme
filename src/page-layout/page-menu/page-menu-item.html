@@ -14,14 +14,15 @@
              }
         </style>
 
-            <li>
-                <a href="{{url}}">
-                    <i class="fa fa-fw fa-home"></i>
-                    <span>
-                        <slot></slot>
-                    </span>
+
+                <a name="{{name}}" href="{{href}}">
+                    <i class="fa fa-fw fa-home">
+                        <span>
+                            <slot></slot>
+                        </span>
+                    </i>
                 </a>
-            </li>
+
 
     </template>
 
@@ -33,7 +34,7 @@
 
             static get properties(){
                 return {
-                    url: {
+                    href: {
                         type: String,
                         value: ''
                     },
